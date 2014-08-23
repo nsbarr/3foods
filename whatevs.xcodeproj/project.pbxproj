@@ -12,6 +12,8 @@
 		011DD12719A6642C00ECB1F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 011DD12519A6642C00ECB1F7 /* Main.storyboard */; };
 		011DD12919A6642C00ECB1F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 011DD12819A6642C00ECB1F7 /* Images.xcassets */; };
 		011DD13519A6642C00ECB1F7 /* whatevsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD13419A6642C00ECB1F7 /* whatevsTests.swift */; };
+		011DD13F19A7AACF00ECB1F7 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD13E19A7AACF00ECB1F7 /* StatsViewController.swift */; };
+		011DD14119A7B26C00ECB1F7 /* FoodCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD14019A7B26C00ECB1F7 /* FoodCount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		011DD12E19A6642C00ECB1F7 /* whatevsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = whatevsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		011DD13319A6642C00ECB1F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		011DD13419A6642C00ECB1F7 /* whatevsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatevsTests.swift; sourceTree = "<group>"; };
+		011DD13E19A7AACF00ECB1F7 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		011DD14019A7B26C00ECB1F7 /* FoodCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				011DD12119A6642C00ECB1F7 /* AppDelegate.swift */,
 				011DD12319A6642C00ECB1F7 /* ViewController.swift */,
+				011DD14019A7B26C00ECB1F7 /* FoodCount.swift */,
+				011DD13E19A7AACF00ECB1F7 /* StatsViewController.swift */,
 				011DD12519A6642C00ECB1F7 /* Main.storyboard */,
 				011DD12819A6642C00ECB1F7 /* Images.xcassets */,
 				011DD11F19A6642C00ECB1F7 /* Supporting Files */,
@@ -209,7 +215,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				011DD12419A6642C00ECB1F7 /* ViewController.swift in Sources */,
+				011DD13F19A7AACF00ECB1F7 /* StatsViewController.swift in Sources */,
 				011DD12219A6642C00ECB1F7 /* AppDelegate.swift in Sources */,
+				011DD14119A7B26C00ECB1F7 /* FoodCount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +336,7 @@
 				INFOPLIST_FILE = whatevs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -339,6 +348,7 @@
 				INFOPLIST_FILE = whatevs/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

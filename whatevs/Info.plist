@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FoodData</key>
+	<dict>
+		<key>VEGGIE</key>
+		<integer>3</integer>
+		<key>MEAT</key>
+		<integer>4</integer>
+		<key>FISH</key>
+		<integer>1</integer>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
