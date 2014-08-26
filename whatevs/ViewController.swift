@@ -8,31 +8,24 @@
 
 import UIKit
 import Foundation
-
+import QuartzCore
 
 class ViewController: UIViewController {
     
-    var foodCount = FoodCount()
     var filteredSubviews = [UIButton]()
     var dateButton = UIButton()
+    let dateFormatter = NSDateFormatter()
+    let locale = NSLocale.currentLocale()
+    var theDate:NSString = ""
+
     
     
     
     var veggieCount = NSUserDefaults.standardUserDefaults().integerForKey("veggieCount")
     var fishCount = NSUserDefaults.standardUserDefaults().integerForKey("fishCount")
     var meatCount = NSUserDefaults.standardUserDefaults().integerForKey("meatCount")
+    var currentDate = NSUserDefaults.standardUserDefaults().stringForKey("currentDate")
     
-
-
-    
-   // var foo = NSDictionary()
-    //var foodRecord = NSUserDefaults.standardUserDefaults()
-    
-    //var sessionRecord = foodList
-    
-    
-
-
     
 
     
@@ -40,40 +33,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        
-        //get foodRecord; if foodRecord doesn't exist then create it and make it 0:0:0
-        //let sparseRecord = ["veggie":NSNumber(int:0),"meat":NSNumber(int:0),"fish":NSNumber(int:0)] as NSDictionary
-        
-        //NSUserDefaults.standardUserDefaults().setObject(sparseRecord, forKey: "myDict")
-        
-
-        
-//        
-//        if let foo = NSUserDefaults.standardUserDefaults().dictionaryForKey("myDict") {
-//            println("value of foo is \(foo)")
-//            println(foo["veggie"])
-//            
-//        }
-//        else {
-//            println("foo doesnt exist..creating")
-//       //     NSUserDefaults.standardUserDefaults().setObject(sparseRecord, forKey: "myDict")
-//            var foo = NSUserDefaults.standardUserDefaults().dictionaryForKey("myDict")
-//            println(foo)
-//            
-//        }
-
-        
         for subview in view.subviews {
             subview.removeFromSuperview()
 
         }
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("checkTheTime"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(20, target: self, selector: Selector("checkTheTime"), userInfo: nil, repeats: true)
 
-        // Do any additional setup after loading the view, typically from a nib.
         
         self.view.backgroundColor = UIColor.whiteColor()
-       
+    
     
 
         let meatColor = UIColor(red: 1, green: 109/255, blue: 74/255, alpha: 1)
@@ -84,54 +53,61 @@ class ViewController: UIViewController {
     
 
 
+        let veggie = UIButton(frame: CGRect(x:0, y:2*view.frame.height/3, width:view.frame.width, height:view.frame.height/3))
+        veggie.setTitle("🍏", forState: .Normal)
+        veggie.setTitle("VEGGIE", forState: .Highlighted)
+        veggie.userInteractionEnabled = true
+        veggie.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 60)
+        veggie.backgroundColor = veggieColor
+        veggie.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        veggie.tag = 0
+        view.addSubview(veggie)
+
         
-        let meat = UIButton(frame: CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height/3))
-        meat.setTitle("🍖", forState: .Normal)
-     //   meat.setTitle("MEAT", forState: .Highlighted)
-        meat.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 40)
-        meat.backgroundColor = meatColor
-        meat.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        meat.tag = 300
-        view.addSubview(meat)
         
         let fish = UIButton(frame: CGRect(x:0, y:view.frame.height/3, width:view.frame.width, height:view.frame.height/3))
         fish.setTitle("🐟", forState: .Normal)
-    //    fish.setTitle("FISH", forState: .Highlighted)
-        fish.userInteractionEnabled = true
-        fish.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 40)
+        fish.setTitle("FISH", forState: .Highlighted)
+        fish.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 60)
         fish.backgroundColor = fishColor
         fish.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        fish.tag = 200
+        fish.tag = 1
         view.addSubview(fish)
         
-        let veggie = UIButton(frame: CGRect(x:0, y:2*view.frame.height/3, width:view.frame.width, height:view.frame.height/3))
-        veggie.setTitle("🍏", forState: .Normal)
-       // veggie.setTitle("VEGGIE", forState: .Highlighted)
-        veggie.userInteractionEnabled = true
-        veggie.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 40)
-        veggie.backgroundColor = veggieColor
-        veggie.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        veggie.tag = 100
 
-        view.addSubview(veggie)
+        
+        let meat = UIButton(frame: CGRect(x:0, y:0, width:view.frame.width, height:view.frame.height/3))
+        meat.setTitle("🍖", forState: .Normal)
+        meat.setTitle("MEAT", forState: .Highlighted)
+        meat.titleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 60)
+        meat.backgroundColor = meatColor
+        meat.addTarget(self, action: "buttonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        meat.tag = 2
+        view.addSubview(meat)
+
         
         filteredSubviews = self.view.subviews as [UIButton]
-        let staticFilteredSubviews = filteredSubviews
+        filteredSubviews = filteredSubviews.reverse()
         
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+
+        
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        navBar.backgroundColor = UIColor.blackColor()
+        view.addSubview(navBar)
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        let locale = NSLocale.currentLocale()
         dateFormatter.locale = locale
         dateFormatter.doesRelativeDateFormatting = false
-        let theDate = dateFormatter.stringFromDate(NSDate.date())
-        dateButton.setTitle(theDate, forState: .Normal)
-        dateButton.frame = CGRect(x: 0, y: view.frame.height-50,width: view.frame.width,height: 40)
-        dateButton.tag = 1
-        self.view.addSubview(dateButton)
-        
-        self.view.userInteractionEnabled = true
+        theDate = dateFormatter.stringFromDate(NSDate.date())
+        NSUserDefaults.standardUserDefaults().setObject(theDate, forKey: "currentDate")
+        dateButton.setTitle("What did you eat today?", forState: .Normal)
+        dateButton.frame = CGRect(x: 0, y: 0,width: view.frame.width,height: 40)
+        dateButton.tag = 99
+        navBar.addSubview(dateButton)
+
 
         
         
@@ -139,116 +115,110 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-func buttonPressed(sender: UIButton) {
-    println("\(sender.titleLabel.text) was tapped")
-    
-    //var foo:NSDictionary = NSUserDefaults.standardUserDefaults().dictionaryForKey("myDict")
-    
-   // var baz = Int(foo["veggie"] as NSNumber)
-    
-    if (sender.tag == 100){ //veggie
-//        println("incrementing veggie from")
-//        println(foo["veggie"])
-//        println("to")
-//        println(Int(foo["veggie"] as NSNumber) + 1)
-//        
-//        baz = baz + 1
-//        
-//        NSUserDefaults.standardUserDefaults().setObject(baz, forKey: "myDict")
+    func buttonPressed(sender: UIButton) {
+        println("\(sender.titleLabel.text) was tapped")
         
-        veggieCount = veggieCount + 1
-        NSUserDefaults.standardUserDefaults().setInteger(veggieCount, forKey: "veggieCount")
-        println(veggieCount)
+
         
+        if (sender.tag == 0){ //veggie
+            
+            veggieCount = veggieCount + 1
+            NSUserDefaults.standardUserDefaults().setInteger(veggieCount, forKey: "veggieCount")
+            println("veggie count is \(veggieCount)")
+            
+            
+        }
+        else if (sender.tag == 1){ //fish
+            fishCount = fishCount + 1
+            NSUserDefaults.standardUserDefaults().setInteger(fishCount, forKey: "fishCount")
+            println("fish count is \(fishCount)")
+        }
         
-    }
-    else if (sender.tag == 200){ //fish
-        fishCount = fishCount + 1
-        NSUserDefaults.standardUserDefaults().setInteger(fishCount, forKey: "fishCount")
-        println(fishCount)
-    }
-    
-    else if (sender.tag) == 300 { //meat
-        meatCount = meatCount + 1
-        NSUserDefaults.standardUserDefaults().setInteger(meatCount, forKey: "meatCount")
-        println(meatCount)
-    }
-    
-    else { println("no food tapped")}
-    
-//    foodList[sender.titleLabel.text] = foodList[sender.titleLabel.text]!+1
-//
-//    foodRecord.setObject(foodList, forKey: "foodRecord")
-//    foodRecord.synchronize()
-//    
-//    println(foodRecord.objectForKey("foodRecord"))
-//    
-    
-    
-
-    
-    self.animateLabels()
-    
-
-
+        else if (sender.tag) == 2 { //meat
+            meatCount = meatCount + 1
+            NSUserDefaults.standardUserDefaults().setInteger(meatCount, forKey: "meatCount")
+            println("meat count is \(meatCount)")
+        }
+        
+        else {
+            println("no food tapped")
+        }
+        
+        self.animateLabels()
+        
     }
     
     func animateLabels(){
         var barHeight:CGFloat
         var startingYPosition:CGFloat = 0
         
-        //find largest value in foodDict
+        //find sum of the foodCounts
         var sumOfTheCounts = 0
-        for foodCount in foodList.values {
+        var arrayOfFoodCounts = [veggieCount, fishCount, meatCount]
+        for foodCount in arrayOfFoodCounts {
             
             sumOfTheCounts = sumOfTheCounts + foodCount
 
         }
         let heightOfEachUnit = view.frame.height/CGFloat(sumOfTheCounts)
         
-        println(filteredSubviews)
         for button in filteredSubviews {
-            if (button.tag != 1) {
-            
-            let buttonCount = CGFloat(foodList[button.titleLabel.text]!)
-            barHeight = buttonCount*heightOfEachUnit
-            UIView.animateWithDuration(1, animations: {
-                button.frame = CGRectMake(button.frame.origin.x, startingYPosition, button.frame.width, barHeight)
-            },
+            if (button.tag < 3) {
+                let buttonCount = CGFloat(arrayOfFoodCounts[button.tag])
+                barHeight = buttonCount*heightOfEachUnit
+                UIView.animateWithDuration(1, animations: {
+                    button.frame = CGRectMake(button.frame.origin.x, startingYPosition, button.frame.width, barHeight)
+                  //  button.titleLabel.transform = CGAffineTransformScale(button.titleLabel.transform, 0.8, 0.8);
+                    
+                },
                 completion: { (value:Bool) in
-                    let theLabel = UILabel(frame: CGRect(x: 10,y: 0,width: button.frame.width,height: button.frame.height))
+                    if (button.frame.height == 0){
+                        button.removeFromSuperview()
+                    }
+                    let theLabel = UILabel(frame: CGRect(x: button.frame.width-30, y: button.frame.height/2-10, width: 20, height: 20))
+                    theLabel.textColor = UIColor.whiteColor()
                     
-                    theLabel.text = String(foodList[button.titleLabel.text]!)
+                    var shapeLayer = CAShapeLayer()
+                    let thePath = CGPathCreateWithEllipseInRect(CGRect(x: button.frame.width-30, y: button.frame.height/2-10, width: 20, height: 20), nil)
+                    shapeLayer.fillColor = UIColor.blackColor().CGColor
+                    shapeLayer.opacity = 0.4
+                    shapeLayer.path = thePath
                     
-                    theLabel.removeFromSuperview()
+                    button.layer.addSublayer(shapeLayer)
+                
+                    
+                    
+                    theLabel.text = String(arrayOfFoodCounts[button.tag])
+                    //button.addSubview(theCircleView)
                     button.addSubview(theLabel)
-                    
                 })
             
             startingYPosition = startingYPosition + barHeight
             button.userInteractionEnabled = false
-            
+            }
         }
-        }
-        println(foodList)
-        self.addResetButton()
-
-}
+        dateButton.setTitle("Yum! See you tomorrow.", forState: .Normal)
+    }
+    
     func checkTheTime() {
-    //    println(NSDate.date())
+        let theLastCheckedDate = NSUserDefaults.standardUserDefaults().stringForKey("currentDate")
+        let theUpdatedDate = dateFormatter.stringFromDate(NSDate.date())
+            
+        println(theLastCheckedDate, theUpdatedDate)
+        
+        if (theLastCheckedDate != theUpdatedDate){
+                println("goddamn, it's a new day")
+                currentDate = theUpdatedDate
+                NSUserDefaults.standardUserDefaults().setObject(currentDate, forKey: "currentDate")
+                self.viewDidLoad()
+            
+            }
+            else {
+                println("same ole same ole")
+            }
         
     }
-    func addResetButton() {
-        
-        dateButton.setTitle("Come Back Tomorrow", forState: .Normal)
-        
-        dateButton.addTarget(self, action: "resetView:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-    }
-    func resetView(sender:UIButton){
-        self.viewDidLoad()
-    }
+    
 }
