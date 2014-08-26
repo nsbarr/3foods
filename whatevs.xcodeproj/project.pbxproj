@@ -14,6 +14,7 @@
 		011DD13519A6642C00ECB1F7 /* whatevsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD13419A6642C00ECB1F7 /* whatevsTests.swift */; };
 		011DD13F19A7AACF00ECB1F7 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD13E19A7AACF00ECB1F7 /* StatsViewController.swift */; };
 		011DD14119A7B26C00ECB1F7 /* FoodCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD14019A7B26C00ECB1F7 /* FoodCount.swift */; };
+		011DD14319ABE5ED00ECB1F7 /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011DD14219ABE5ED00ECB1F7 /* Encoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		011DD13419A6642C00ECB1F7 /* whatevsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatevsTests.swift; sourceTree = "<group>"; };
 		011DD13E19A7AACF00ECB1F7 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		011DD14019A7B26C00ECB1F7 /* FoodCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodCount.swift; sourceTree = "<group>"; };
+		011DD14219ABE5ED00ECB1F7 /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Encoder.swift; path = ../Encoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		011DD11E19A6642C00ECB1F7 /* whatevs */ = {
 			isa = PBXGroup;
 			children = (
+				011DD14219ABE5ED00ECB1F7 /* Encoder.swift */,
 				011DD12119A6642C00ECB1F7 /* AppDelegate.swift */,
 				011DD12319A6642C00ECB1F7 /* ViewController.swift */,
 				011DD14019A7B26C00ECB1F7 /* FoodCount.swift */,
@@ -216,6 +219,7 @@
 			files = (
 				011DD12419A6642C00ECB1F7 /* ViewController.swift in Sources */,
 				011DD13F19A7AACF00ECB1F7 /* StatsViewController.swift in Sources */,
+				011DD14319ABE5ED00ECB1F7 /* Encoder.swift in Sources */,
 				011DD12219A6642C00ECB1F7 /* AppDelegate.swift in Sources */,
 				011DD14119A7B26C00ECB1F7 /* FoodCount.swift in Sources */,
 			);
@@ -405,6 +409,7 @@
 				011DD13A19A6642C00ECB1F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		011DD13B19A6642C00ECB1F7 /* Build configuration list for PBXNativeTarget "whatevsTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +418,7 @@
 				011DD13D19A6642C00ECB1F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

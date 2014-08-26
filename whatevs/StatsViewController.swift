@@ -12,7 +12,9 @@ import Foundation
 
 var meatBar = UIView(frame: CGRect(x: 200, y: -100, width: foodList["MEAT"]!, height: 100))
 
+
 class StatsViewController: UIViewController {
+    
 
 
     override func loadView() {
